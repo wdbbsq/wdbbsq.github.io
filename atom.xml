@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wdbbsq.github.io</id>
-    <title>Gridea</title>
-    <updated>2020-02-26T14:56:52.137Z</updated>
+    <title>wdbbsq</title>
+    <updated>2020-02-26T15:10:53.135Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wdbbsq.github.io"/>
     <link rel="self" href="https://wdbbsq.github.io/atom.xml"/>
     <subtitle>温故而知新</subtitle>
     <logo>https://wdbbsq.github.io/images/avatar.png</logo>
     <icon>https://wdbbsq.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, Gridea</rights>
+    <rights>All rights reserved 2020, wdbbsq</rights>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://wdbbsq.github.io/post/hello-gridea/</id>
