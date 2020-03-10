@@ -4,7 +4,7 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>MapReduce: Simplified Data Processing on Large Cluster（译）🚧UnderConstruction🚧 | ionia</title>
-<link rel="shortcut icon" href="https://wdbbsq.github.io/favicon.ico?v=1583807776018">
+<link rel="shortcut icon" href="https://wdbbsq.github.io/favicon.ico?v=1583824395306">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://wdbbsq.github.io/styles/main.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -106,6 +106,31 @@
 <p><em>Written by Jeffery Dean &amp; Sanjay Ghemawat</em></p>
 <p><em>Translated by ionia</em></p>
 <h2 id="摘要">摘要</h2>
+<p>映射归约（MapReduce）是一种编程模型，一种用于处理和生成大规模数据集的相关工具。用户定义一个处理键值对的<code>map</code>函数来生成一组中间键值对（intermediate key/value pairs），以及一个合并所有具有相同<code>key</code>的中间<code>value</code>的<code>reduce</code>函数。正如本文中的例子一样，很多真实世界的任务都可以被该模型所表述。</p>
+<p>用这种函数样式编写的程序会自动并行化，并在大型商用机器集群上执行。<code>run-time</code>系统将会负责划分输入数据、调度一组机器完成程序的执行、处理机器故障以及管理集群内部的信息传递。这就使得没有任何并行和分布式系统经验的程序员也可以轻松利用大型分布式系统资源。</p>
+<p>我们在大型商用机器集群上运行的MapReduce模型是可扩展的：一个典型的MapReduce计算过程会在数千台机器上处理很多万亿字节（TB）的数据。Google的程序员会发这个系统用起来很简单：每天都有数百个、上至一千个MapReduce程序在Google的集群服务器上被执行。</p>
+<h2 id="1-简介">1 简介</h2>
+<p>在过去的五年里（1999~2004），笔者和其他Google同事处理了上百次</p>
+<h2 id="2-编程模型">2 编程模型</h2>
+<h3 id="21-示例">2.1 示例</h3>
+<h3 id="22-类型">2.2 类型</h3>
+<h3 id="23-更多例子">2.3 更多例子</h3>
+<h2 id="3-执行">3 执行</h2>
+<h3 id="31-执行概述">3.1 执行概述</h3>
+<h3 id="32-主数据结构">3.2 主数据结构</h3>
+<h3 id="33-容错性">3.3 容错性</h3>
+<h3 id="34-局部性">3.4 局部性</h3>
+<h3 id="35-任务粒度">3.5 任务粒度</h3>
+<h3 id="36-备份任务">3.6 备份任务</h3>
+<h2 id="4-固件">4 固件</h2>
+<h3 id="41-分割函数">4.1 分割函数</h3>
+<h3 id="42">4.2</h3>
+<h3 id="43-组合函数">4.3 组合函数</h3>
+<h3 id="44-输入输出类型">4.4 输入输出类型</h3>
+<h3 id="45-副作用">4.5 副作用</h3>
+<h3 id="46-忽略坏数据">4.6 忽略坏数据</h3>
+<h3 id="47-本地执行">4.7 本地执行</h3>
+<h3 id="48-状态信息">4.8 状态信息</h3>
 
                 </div>
             </article>
