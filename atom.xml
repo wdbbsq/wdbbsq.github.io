@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wdbbsq.github.io</id>
     <title>ionia</title>
-    <updated>2020-03-11T16:28:55.390Z</updated>
+    <updated>2020-03-21T14:52:55.121Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wdbbsq.github.io"/>
     <link rel="self" href="https://wdbbsq.github.io/atom.xml"/>
@@ -27,6 +27,9 @@
 <p>我们在大型商用机器集群上运行的MapReduce模型是可扩展的：一个典型的MapReduce计算过程会在数千台机器上处理很多万亿字节（TB）的数据。Google的程序员认为这个系统用起来很简单：在Google的集群服务器上每天都运行着数百个、乃至一千个MapReduce程序。</p>
 <h2 id="1-简介">1 简介</h2>
 <p>在过去的五年里（2000~2004），笔者与Google的同事进行了上百次需要处理大量原始数据（诸如抓取的文档，Web请求日志等）的专业计算任务，以得到各种衍生数据，比如<a href="%5Bhttps://zh.wikipedia.org/wiki/%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95%5D(https://zh.wikipedia.org/wiki/%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95)">倒排索引</a>、Web文档图形结构的各种表示形式、每个主机爬取的页面数摘要、给定日期中最频繁的查询集等等。大多数此类计算任务从概念上说都是简单明了的。然而因为输入的数据通常很庞大，为了在一个较合理的时间内完成，这些计算任务只能被分配给数百或数千台机器。为了解决并行计算，分配数据和处理错误的问题，大量复杂代码将原本简单的计算复杂化。</p>
+<p>为了应对这种复杂情况，我们设计了一种新的抽象概念，使其能够描述我们想要实现简单计算，同时隐藏繁琐复杂的并行化、容错性（fault-tolerance）、数据分配和载入平衡的细节。这个抽象概念是受<code>Lisp</code>和其他函数式编程语言中的<code>map</code>和<code>reduce</code>函数所启发。_我们意识到，大多数计算过程中都包括在输入数据中计算一组中间键值对时利用<code>map</code>操作得到每个逻辑记录，然后通过<code>reduce</code>操作得到所有键相同的值，以相应地组合派生数据。_对用户指定的<code>map</code>和<code>reduce</code>函数模型的应用，让我们可以轻松进行大型并行计算任务，并将二次执行作为初级容错机制。</p>
+<p>这些工作的主要贡献是创造了一个简单强大的接口，实现了自动并行化、大型计算任务的分配以及在大型商用机型上的高性能。</p>
+<p>第二章描述了基础的编程模型并介绍了几个例子。第三章介绍了一种面向集群的计算环境的MapReduce接口的实现。第四章介绍了几处我们认为有用的编程模型的细化。第五章是针对大量任务的实现的性能测试方法。第六章在Google内部探索了MapReduce的应用，包括我们将其作为产品索引系统的一种改写的实验。第七章讨论了与其相关的及未来的工作。</p>
 <h2 id="2-编程模型">2 编程模型</h2>
 <h3 id="21-示例">2.1 示例</h3>
 <h3 id="22-类型">2.2 类型</h3>
