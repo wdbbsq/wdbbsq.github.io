@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>关于 | ionia</title>
+<title>Federated Learning的几种策略 | ionia</title>
 <link rel="shortcut icon" href="https://wdbbsq.github.io/favicon.ico?v=1606029653647">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://wdbbsq.github.io/styles/main.css">
@@ -87,28 +87,57 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    关于
+                    Federated Learning的几种策略
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2019-01-25 ·
+                        · 2020-11-16 ·
                     </time>
                     
                 </div>
                 <div class="post-content">
-                    <blockquote>
-<p>很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="who-am-i">⛹ WHO AM I</h2>
-<p>一条大四咸鱼orz</p>
-<h2 id="contact">📬 CONTACT</h2>
-<p>zhangshuqi98@foxmail.com</p>
-<h2 id="一起变得更强吧">🏃 一起变得更强吧！</h2>
+                    <h1 id="背景">背景</h1>
+<p>Federated Learning/联合学习，即分布式学习，最早是由<a href="https://ai.googleblog.com/2017/04/federated-learning-collaborative.html">Google</a> 在2017年提出，为了解决安卓用户在本地更新模型的问题，其主要工作原理如下：</p>
+<ul>
+<li>手机下载现有模型；</li>
+<li>用手机的本地数据来训练模型；</li>
+<li>训练好之后，迭代更新，并把更新的内容加密上传云端；</li>
+<li>与其他用户的数据融合，以此对于共享模型进行改进；</li>
+<li>该过程不断被重复，改进后的共享模型也会被不断下载到本地；</li>
+</ul>
+<p>在其他场景下，比如在需要训练敏感数据时，比如来自政府机构的数据，数据拥有者不愿意直接将数据上传到第三方，也需要Federated Learning的帮助。</p>
+<h1 id="解决孤岛效应的两种策略">解决孤岛效应的两种策略</h1>
+<h2 id="中心策略centralized-policy">中心策略Centralized Policy</h2>
+<p>如图，各个代理通过其管理程序判断哪些数据将发给代理1，代理1中的数据管理者(data curator)将训练数据汇总并简单处理，如重新标记、过滤、拒绝可能错误的数据等。</p>
+<figure data-type="image" tabindex="1"><img src="https://wdbbsq.github.io/post-images/1606029570368.png" alt="" loading="lazy"></figure>
+<h2 id="联合学习federated-ai">联合学习Federated AI</h2>
+<p>与中心策略移动数据不同的是，联合学习移动的是在各个服务器上训练的模型参数。即在本地分别训练好之后，再将模型的参数整合到一起，得到一个和用所有数据训练出来的模型等效的模型。</p>
+<figure data-type="image" tabindex="2"><img src="https://wdbbsq.github.io/post-images/1606029611932.png" alt="" loading="lazy"></figure>
+<h2 id="如何选择">如何选择</h2>
+<h1 id="四种预设flavor">四种预设Flavor</h1>
+<p>Flavor是指模型的预设。<br>
+基本架构是其他服务器上的<strong>Federation Client</strong>向主服务器上的<strong>Federation Server</strong>交互。不过其他数据源可能对其<strong>Federation Client</strong>的行为做出约束，如。。。</p>
+<h2 id="同步在线协同-synchronized-online-federation">同步在线协同 Synchronized Online Federation</h2>
+<p>网络中的节点通过同步梯度下降(Synchronous SGD)方法，加上多余的一个损失函数来训练模型，将计算出的梯度发送到主服务器。主服务器通过求梯度的平均来累积，构建出全局梯度。<br>
+需要进行多轮同步。</p>
+<h2 id="异步模型移动-unsynchronized-model-movement">异步模型移动 Unsynchronized Model Movement</h2>
+<p>该预设不允许在每次mini-batch的时候同步模型。主服务器先用自己本地数据训练，将得到的模型发给其他服务器，然后他们在使用自己的本地数据训练。适用于不愿意下载运行Federation Client程序的服务器。</p>
+<h2 id="限制数据交换-limited-data-exchange-approach">限制数据交换 Limited Data Exchange Approach</h2>
+<p>文中的实验表明，当数据不准确，并且含有不同类型的数据时，使用随机切割(Random split)的数据训练的模型，比服务器上只训练一种类型数据的模型的精度高得多，无论是通过同步还是异步方法。<br>
+而如果交换一点不同类型的数据，模型的精度提升非常明显，即使数据交换量很小(~1%)，效果也很明显</p>
+<figure data-type="image" tabindex="3"><img src="https://wdbbsq.github.io/post-images/1606029644360.png" alt="" loading="lazy"></figure>
 
                 </div>
             </article>
         </div>
 
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://wdbbsq.github.io/post/mapreduce-simplified-data-processing-on-large-clusteryi/" class="post-title gt-a-link">
+                    MapReduce: Simplified Data Processing on Large Cluster（译）🚧UnderConstruction🚧
+                </a>
+            </div>
         
 
         
